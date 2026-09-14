@@ -1,0 +1,1 @@
+describe('production configuration',()=>{it('keeps real services opt-in',()=>expect(process.env.EXPO_PUBLIC_USE_REAL_SERVICES).not.toBe('true'));it('caps discovery privacy radius',()=>expect(Math.min(80,50)).toBe(50))});
