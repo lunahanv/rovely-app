@@ -1,0 +1,4 @@
+import type {PropsWithChildren} from 'react';import {Pressable,StyleSheet,Text,View} from 'react-native';
+export const Button=({title,onPress,kind='primary'}:{title:string;onPress:()=>void;kind?:'primary'|'danger'|'ghost'})=><Pressable accessibilityRole="button" onPress={onPress} style={[s.button,kind==='danger'&&s.danger,kind==='ghost'&&s.ghost]}><Text style={[s.buttonText,kind==='ghost'&&s.ghostText]}>{title}</Text></Pressable>;
+export const Screen=({children}:PropsWithChildren)=><View style={s.screen}>{children}</View>;
+const s=StyleSheet.create({screen:{flex:1,backgroundColor:'#fff',padding:20,paddingTop:52},button:{backgroundColor:'#EF476F',padding:15,borderRadius:16,alignItems:'center',marginVertical:6},danger:{backgroundColor:'#B42318'},ghost:{backgroundColor:'#F4F1F2'},buttonText:{color:'#fff',fontWeight:'800'},ghostText:{color:'#241B1E'}});

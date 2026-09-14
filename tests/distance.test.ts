@@ -1,0 +1,2 @@
+import {approximateDistance,clampRadius,distanceKm} from '../src/domain/distance';
+test('radius is constrained to 1–50 km',()=>{expect(clampRadius(-4)).toBe(1);expect(clampRadius(90)).toBe(50)});test('coordinates are converted to approximate distance',()=>{expect(distanceKm({latitude:37.7765,longitude:29.0864},{latitude:37.78,longitude:29.09})).toBeLessThan(1);expect(approximateDistance(.4)).toBe('1 km’den yakın')});

@@ -1,0 +1,25 @@
+name: CI
+on:
+  pull_request:
+  push:
+    branches: [main]
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  quality:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 22
+      - run: npm install
+      - run: npm run typecheck
+      - run: npm run lint
+      - run: npm test
+      # Expo SDK 53's Metro tree currently has upstream high advisories with no
+      # published compatible patch. Block exploitable critical findings; keep
+      # high findings visible in the job summary until the SDK upgrade lands.
+      - name: Dependency audit (critical gate)
+        run: npm audit --omit=dev --audit-level=critical
